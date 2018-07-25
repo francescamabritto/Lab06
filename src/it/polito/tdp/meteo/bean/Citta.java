@@ -12,6 +12,15 @@ public class Citta {
 		this.nome = nome;
 	}
 	
+	public Citta(String nome, List<Rilevamento> rilevamenti, int counter) {
+		super();
+		this.nome = nome;
+		this.rilevamenti = rilevamenti;
+		this.counter = counter;
+	}
+
+
+
 	public Citta(String nome, List<Rilevamento> rilevamenti) {
 		this.nome = nome;
 		this.rilevamenti = rilevamenti;

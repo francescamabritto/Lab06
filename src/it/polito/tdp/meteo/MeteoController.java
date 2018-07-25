@@ -1,6 +1,8 @@
 package it.polito.tdp.meteo;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -10,6 +12,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 
 public class MeteoController {
+	
+	Model model = new Model();
+	
 
 	@FXML
 	private ResourceBundle resources;
@@ -18,7 +23,7 @@ public class MeteoController {
 	private URL location;
 
 	@FXML
-	private ChoiceBox<?> boxMese;
+	private ChoiceBox<Integer> boxMese;
 
 	@FXML
 	private Button btnCalcola;
@@ -29,14 +34,27 @@ public class MeteoController {
 	@FXML
 	private TextArea txtResult;
 
+	public Model getModel() {
+		return model;
+	}
+	
+	public void setModel(Model model) {
+		this.model = model;
+		List<Integer>mesi = new ArrayList <>();
+		for(int i = 1; i<13; i++) {
+			mesi.add(i);
+		}
+		boxMese.getItems().addAll(mesi) ;
+	}
+	
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
-
+		this.txtResult.appendText(model.trovaSequenza(boxMese.getValue()));
 	}
 
 	@FXML
 	void doCalcolaUmidita(ActionEvent event) {
-
+		this.txtResult.appendText((model.getUmiditaMedia(boxMese.getValue()).toString()));  
 	}
 
 	@FXML
